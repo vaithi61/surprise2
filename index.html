@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kalai & Heyshu — Surprise</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS (Animations) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Lightbox2 (Gallery lightbox) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --paper:#f6e7e2; /* soft pink-beige */
+      --ink:#403234;  /* deep brown */
+      --accent:#c87c6b; /* terracotta */
+      --accent-2:#e9b3a6; /* pale peach */
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; color:var(--ink);} 
+    .serif { font-family: 'Playfair Display', Georgia, serif; }
+    /* Subtle paper texture */
+    .paper {
+      background: var(--paper);
+      background-image: radial-gradient(rgba(0,0,0,.04) 1px, transparent 1px);
+      background-size: 12px 12px;
+    }
+    /* Soft shadow */
+    .soft { box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+    /* Gold-ish gradient */
+    .gold {
+      background: linear-gradient(160deg,#fff7ef, #f4e3cf 40%, #edd9bf 60%, #fff7ef);
+    }
+    /* Timeline line */
+    .timeline:before{
+      content:""; position:absolute; left:50%; top:0; bottom:0; width:2px; background:rgba(0,0,0,.12); transform:translateX(-50%);
+    }
+    .count-box { min-width:64px; }
+    .stroke-title {
+      -webkit-text-stroke: 1px rgba(255,255,255,.6);
+      text-shadow: 0 2px 14px rgba(0,0,0,.35);
+    }
+    /* Lightbox caption color tweak on dark images */
+    .lb-data .lb-caption { color:#fff; }
+  </style>
+</head>
+<body class="paper text-[15px] leading-relaxed">
+
+  <!-- Floating Music Control + Audio -->
+  <audio id="bg-music" autoplay loop muted playsinline>
+    <!-- Put your mp3 in /music/ and update the filename -->
+    <source src="images/hi_malini.mp3" type="audio/mpeg">
+  </audio>
+  <button id="music-btn" class="fixed right-5 bottom-5 md:right-7 md:bottom-7 z-50 flex items-center gap-2 bg-[var(--accent)] text-white px-4 py-2 rounded-full soft hover:opacity-90 transition" aria-label="Toggle music">
+    <span id="music-icon">🔇</span><span class="hidden sm:inline">Sound On</span>
+  </button>
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-[rgba(246,231,226,.65)] border-b border-[rgba(0,0,0,.06)]" data-aos="fade-down">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-2 font-semibold">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="text-[var(--accent)]"><path d="M12 2l2.39 4.84 5.34.78-3.86 3.76.91 5.3L12 14.77 6.22 16.68l.91-5.3L3.27 7.62l5.34-.78L12 2z" fill="currentColor"/></svg>
+        <span class="serif text-xl">Karthick Surprise Studio</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="#reception" class="hover:text-[var(--accent)]">Reception</a>
+        <a href="#about" class="hover:text-[var(--accent)]">About</a>
+        <a href="#story" class="hover:text-[var(--accent)]">Love Story</a>
+        <a href="#timeline" class="hover:text-[var(--accent)]">Day Timeline</a>
+        <a href="#gallery" class="hover:text-[var(--accent)]">Pre-Wedding</a>
+      </nav>
+      <a href="#rsvp" class="hidden md:inline-block bg-[var(--accent)] text-white px-4 py-2 rounded-full hover:opacity-90 transition">Send Blessings</a>
+    </div>
+  </header>
+
+  <!-- HERO / SAVE-THE-DATE -->
+<section id="top" class="relative" data-aos="fade-in">
+  <div class="relative h-[72vh] min-h-[520px] w-full overflow-hidden">
+    <!-- Slideshow Images -->
+    <div id="hero-slideshow" class="absolute inset-0 w-full h-full">
+      <img src="images/5.1.jpeg" 
+           alt="Couple 1" 
+           class="absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-1000">
+      <img src="images/6.1.jpeg" 
+           alt="Couple 2" 
+           class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000">
+      <img src="images/12.jpeg" 
+           alt="Couple 3" 
+           class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000">
+      <img src="images/17.1.jpg" 
+           alt="Couple 4" 
+           class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000">
+    </div>
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/35 via-black/25 to-black/40"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 h-full max-w-6xl mx-auto px-6 flex flex-col items-start justify-center text-white">
+      <p class="uppercase tracking-[0.3em] text-xs md:text-sm" data-aos="fade-up" data-aos-delay="50">Save the date</p>
+      <h1 class="stroke-title serif text-4xl md:text-6xl font-bold mt-2" data-aos="fade-up" data-aos-delay="150">
+        Kalai <span class="text-[var(--accent-2)]">&</span> Heyshu
+      </h1>
+      <p class="mt-3 text-sm md:text-base opacity-90" data-aos="fade-up" data-aos-delay="250">
+        2nd February 2024 · Puducherry, India
+      </p>
+      <a href="#reception" class="mt-6 inline-flex items-center gap-2 bg-white/90 text-[var(--ink)] px-5 py-2.5 rounded-full soft hover:bg-white transition" data-aos="zoom-in" data-aos-delay="350">
+        View Reception Details
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+
+    <!-- Floating countdown card overlay 
+    <div class="max-w-5xl mx-auto px-4 -mt-10 md:-mt-12 relative z-20" data-aos="fade-up">
+      <div class="bg-white rounded-2xl soft p-5 md:p-6 grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+        <div class="col-span-2 md:col-span-4 text-sm md:text-base">Wedding starts in</div>
+        <div class="count-box">
+          <div id="heroDays" class="serif text-3xl md:text-4xl font-semibold">00</div>
+          <div class="text-xs uppercase tracking-wide opacity-70">Days</div>
+        </div>
+        <div class="count-box">
+          <div id="heroHours" class="serif text-3xl md:text-4xl font-semibold">00</div>
+          <div class="text-xs uppercase tracking-wide opacity-70">Hours</div>
+        </div>
+        <div class="count-box">
+          <div id="heroMinutes" class="serif text-3xl md:text-4xl font-semibold">00</div>
+          <div class="text-xs uppercase tracking-wide opacity-70">Minutes</div>
+        </div>
+        <div class="count-box">
+          <div id="heroSeconds" class="serif text-3xl md:text-4xl font-semibold">00</div>
+          <div class="text-xs uppercase tracking-wide opacity-70">Seconds</div>
+        </div>
+      </div>
+    </div> -->
+  </section> 
+
+  <!-- RECEPTION STRIP -->
+  <section id="reception" class="mt-16 md:mt-24" data-aos="fade-up">
+    <div class="relative h-[400px] overflow-hidden">
+      <img src="images/5.1.jpeg" alt="Reception" class="absolute inset-0 w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-r from-black/35 to-black/35"></div>
+      <div class="relative z-10 max-w-6xl h-full mx-auto px-6 flex items-center">
+        <div class="bg-white/90 rounded-2xl p-6 md:p-7 soft w-full md:w-auto" data-aos="zoom-in">
+          <h3 class="serif text-2xl md:text-3xl">Reception</h3>
+          <p class="mt-1 text-sm">Saturday · 2 February · 6:30 PM</p>
+<!--          <div class="mt-4 grid grid-cols-4 gap-3 text-center">
+            <div>
+              <div id="recDays" class="serif text-2xl md:text-3xl font-semibold">00</div>
+              <div class="text-[11px] uppercase tracking-wide opacity-70">Days</div>
+            </div>
+            <div>
+              <div id="recHours" class="serif text-2xl md:text-3xl font-semibold">00</div>
+              <div class="text-[11px] uppercase tracking-wide opacity-70">Hours</div>
+            </div>
+            <div>
+              <div id="recMinutes" class="serif text-2xl md:text-3xl font-semibold">00</div>
+              <div class="text-[11px] uppercase tracking-wide opacity-70">Minutes</div>
+            </div>
+            <div>
+              <div id="recSeconds" class="serif text-2xl md:text-3xl font-semibold">00</div>
+              <div class="text-[11px] uppercase tracking-wide opacity-70">Seconds</div>
+            </div>
+          </div>  -->
+          <a href="#map" class="mt-4 inline-block text-[var(--accent)] underline">View Location</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAVE THE DATE CARD -->
+  <section class="max-w-6xl mx-auto px-6 mt-16 md:mt-24">
+    <div class="grid md:grid-cols-[1fr,1.1fr] items-center gap-8 md:gap-12">
+      <div class="relative" data-aos="fade-right">
+        <div class="absolute -inset-2 bg-[var(--accent-2)]/40 blur-2xl rounded-3xl"></div>
+        <div class="relative gold rounded-3xl p-8 md:p-10 soft border border-white/70">
+          <p class="uppercase text-xs tracking-widest text-[var(--accent)]">Save the Date</p>
+          <h2 class="serif text-3xl md:text-4xl mt-1">Kalai <span class="text-[var(--accent)]">&</span> Heyshu</h2>
+          <p class="mt-2">We joyfully invite you to celebrate our love and togetherness.</p>
+          <div class="mt-5 flex items-center gap-3 text-sm">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7 11h10M7 15h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 3v2M8 3v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="3" y="5" width="18" height="16" rx="4" ry="4" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>
+            <span>2 February 2024 · Puducherry</span>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4 md:gap-6" data-aos="fade-left">
+        <img class="w-full h-56 md:h-64 object-cover rounded-2xl soft" src="images/3.jpeg" alt="couple1"/>
+        <img class="w-full h-56 md:h-64 object-cover rounded-2xl soft" src="images/7.jpeg" alt="couple2"/>
+        <img class="w-full h-56 md:h-64 object-cover rounded-2xl soft" src="images/11.jpeg" alt="couple3"/>
+        <img class="w-full h-56 md:h-64 object-cover rounded-2xl soft" src="images/13.jpeg" alt="couple4"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT US CARDS -->
+  <section id="about" class="max-w-6xl mx-auto px-6 mt-16 md:mt-24">
+    <h3 class="serif text-3xl md:text-4xl text-center" data-aos="fade-up">About Us</h3>
+    <p class="text-center mt-2 opacity-80" data-aos="fade-up" data-aos-delay="100">Two hearts, one story.</p>
+    <div class="grid md:grid-cols-2 gap-8 mt-10">
+      <div class="bg-gradient-to-b from-white to-white/70 rounded-3xl p-6 md:p-8 soft border border-[rgba(0,0,0,.05)]" data-aos="zoom-in">
+        <div class="relative aspect-[4/5] mb-5">
+          <img src="images/men.jpeg" class="absolute inset-0 w-full h-full object-cover rounded-[2rem]" alt="Groom"/>
+        </div>
+        <div class="text-center">
+          <h4 class="serif text-2xl">Kalai</h4>
+          <p class="opacity-70">Senior Associate Manager</p>
+        </div>
+      </div>
+      <div class="bg-gradient-to-b from-white to-white/70 rounded-3xl p-6 md:p-8 soft border border-[rgba(0,0,0,.05)]" data-aos="zoom-in" data-aos-delay="100">
+        <div class="relative aspect-[4/5] mb-5">
+          <img src="images/women.jpeg" class="absolute inset-0 w-full h-full object-cover rounded-[2rem]" alt="Bride"/>
+        </div>
+        <div class="text-center">
+          <h4 class="serif text-2xl">Heyshu</h4>
+          <p class="opacity-70">Senior Software Developer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOVE STORY TIMELINE -->
+  <section id="story" class="max-w-6xl mx-auto px-6 mt-16 md:mt-24 relative">
+    <h3 class="serif text-3xl md:text-4xl text-center" data-aos="fade-up">Our Love Story</h3>
+    <p class="text-center mt-2 opacity-80" data-aos="fade-up" data-aos-delay="100">A few lovely milestones we cherish</p>
+
+    <div class="relative mt-10 timeline">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-y-12">
+        <!-- Card 1 Left -->
+        <div class="md:pr-10" data-aos="fade-right">
+          <div class="bg-white rounded-2xl p-4 md:p-6 soft border border-[rgba(0,0,0,.05)]">
+            <div class="aspect-[4/3] overflow-hidden rounded-xl">
+              <img src="images/1.jpeg" class="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.03]" alt="story1"/>
+            </div>
+            <p class="mt-4 italic">“The best thing to hold onto in life is each other.”</p>
+          </div>
+        </div>
+        <!-- Dot -->
+        <div class="hidden md:flex items-start justify-center"><span class="mt-12 inline-block w-4 h-4 bg-[var(--accent)] rounded-full"></span></div>
+
+        <!-- Dot -->
+        <div class="hidden md:flex items-start justify-center order-2 md:order-none"><span class="mt-12 inline-block w-4 h-4 bg-[var(--accent)] rounded-full"></span></div>
+        <!-- Card 2 Right -->
+        <div class="md:pl-10 order-1 md:order-none" data-aos="fade-left">
+          <div class="bg-white rounded-2xl p-4 md:p-6 soft border border-[rgba(0,0,0,.05)]">
+            <div class="aspect-[4/3] overflow-hidden rounded-xl">
+              <img src="images/3.jpeg" class="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.03]" alt="story2"/>
+            </div>
+            <p class="mt-4 italic">“You are every reason, every hope, and every dream I’ve ever had.”</p>
+          </div>
+        </div>
+
+        <!-- Card 3 Left -->
+        <div class="md:pr-10" data-aos="fade-right">
+          <div class="bg-white rounded-2xl p-4 md:p-6 soft border border-[rgba(0,0,0,.05)]">
+            <div class="aspect-[4/3] overflow-hidden rounded-xl">
+              <img src="images/5.jpeg" class="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.03]" alt="story3"/>
+            </div>
+            <p class="mt-4 italic">“I love you not only for what you are, but for what you have made of me.”</p>
+          </div>
+        </div>
+        <!-- Dot -->
+        <div class="hidden md:flex items-start justify-center"><span class="mt-12 inline-block w-4 h-4 bg-[var(--accent)] rounded-full"></span></div>
+
+        <!-- Dot -->
+        <div class="hidden md:flex items-start justify-center order-2 md:order-none"><span class="mt-12 inline-block w-4 h-4 bg-[var(--accent)] rounded-full"></span></div>
+        <!-- Card 4 Right -->
+        <div class="md:pl-10 order-1 md:order-none" data-aos="fade-left">
+          <div class="bg-white rounded-2xl p-4 md:p-6 soft border border-[rgba(0,0,0,.05)]">
+            <div class="aspect-[4/3] overflow-hidden rounded-xl">
+              <img src="images/17.jpg" class="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.03]" alt="story4"/>
+            </div>
+            <p class="mt-4 italic">“I love you past the moon and miss you beyond the stars.”</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DREAM DAY TIMELINE + MAP -->
+  <section id="timeline" class="max-w-6xl mx-auto px-6 mt-16 md:mt-24">
+    <h3 class="serif text-3xl md:text-4xl text-center" data-aos="fade-up">Our Dream Day’s Timeline</h3>
+    <div class="mt-10 grid md:grid-cols-[0.8fr,1.2fr] gap-8">
+      <div class="bg-white rounded-2xl p-6 soft border border-[rgba(0,0,0,.06)]" data-aos="zoom-in">
+        <div class="flex items-start gap-3">
+          <div class="mt-1">💍</div>
+          <div>
+            <h4 class="serif text-xl">Reception</h4>
+            <p class="text-sm opacity-80">2 Feb · 6:30 PM</p>
+            <p class="mt-2 text-sm">Join us for an evening of celebration, music, and blessings.</p>
+          </div>
+        </div>
+        <div class="mt-6 border-t border-[rgba(0,0,0,.06)] pt-6 flex items-start gap-3">
+          <div class="mt-1">🎉</div>
+          <div>
+            <h4 class="serif text-xl">Dinner & Wishes</h4>
+            <p class="text-sm opacity-80">From 8:00 PM</p>
+            <p class="mt-2 text-sm">Savour delicacies and share your love and wishes.</p>
+          </div>
+        </div>
+      </div>
+      <div id="map" class="overflow-hidden rounded-2xl soft border border-[rgba(0,0,0,.06)]" data-aos="fade-left">
+        <!-- Replace with your exact Google Maps embed link -->
+        <iframe title="Venue Map" src="https://www.google.com/maps?q=Puducherry&output=embed" width="100%" height="380" style="border:0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+<!-- PRE-WEDDING GRID (Masonry Style) -->
+<section id="gallery" class="max-w-6xl mx-auto px-6 mt-16 md:mt-24">
+  <h3 class="serif text-3xl md:text-4xl text-center" data-aos="fade-up">Some of our Pre-Wedding Moments</h3>
+  
+  <div class="columns-2 md:columns-3 gap-4 space-y-4">
+    <img class="w-full rounded-xl soft" src="images/10.jpeg" alt="g1"/>
+    <img class="w-full rounded-xl soft" src="images/11.jpeg" alt="g2"/>
+    <img class="w-full rounded-xl soft" src="images/12.jpeg" alt="g3"/>
+    <img class="w-full rounded-xl soft" src="images/13.jpeg" alt="g4"/>
+    <img class="w-full rounded-xl soft" src="images/14.jpg" alt="g5"/>
+    <img class="w-full rounded-xl soft" src="images/15.jpg" alt="g6"/>
+    <img class="w-full rounded-xl soft" src="images/16.jpeg" alt="g7"/>
+    <img class="w-full rounded-xl soft" src="images/17.jpg" alt="g9"/>
+  </div>
+</section>
+
+  <!-- RSVP / FOOTER -->
+  <footer id="rsvp" class="mt-16 md:mt-24 pb-16" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="bg-white rounded-2xl p-8 md:p-10 soft border border-[rgba(0,0,0,.06)] text-center">
+        <h3 class="serif text-3xl">Gift us with your Blessings and Presence!</h3>
+        <p class="mt-2 opacity-80">Create memories with us ✨</p>
+        <div class="mt-6 flex items-center justify-center gap-3">
+          <a href="https://wa.me/" class="bg-green-600 text-white px-5 py-2.5 rounded-full hover:opacity-90 transition">WhatsApp</a>
+          <a href="#top" class="px-5 py-2.5 rounded-full border border-[rgba(0,0,0,.12)] hover:bg-black/5 transition">Back to Top</a>
+        </div>
+        <div class="mt-8 flex items-center justify-center gap-4 opacity-80 text-sm">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <span>•</span>
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <span>•</span>
+          <a href="#" aria-label="YouTube">Youtube</a>
+        </div>
+        <div class="mt-6 opacity-60 text-xs">© <span id="yr"></span> Karthick Surprise Studio</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- AOS + Lightbox -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+  <script>
+    // Init AOS
+    AOS.init({ duration: 900, once: true, easing: 'ease-out-cubic' });
+
+    // Lightbox options (optional)
+    if (window.lightbox) {
+      lightbox.option({
+        fadeDuration: 200,
+        imageFadeDuration: 200,
+        resizeDuration: 200,
+        wrapAround: true,
+        showImageNumberLabel: false
+      });
+    }
+
+    // Update footer year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Reusable countdown
+/*    function startCountdown(targetDate, ids){
+      const els = Object.fromEntries(Object.entries(ids).map(([k,v])=>[k, document.getElementById(v)]));
+      function tick(){
+        const now = new Date().getTime();
+        const distance = Math.max(0, targetDate - now);
+        const d = Math.floor(distance / (1000*60*60*24));
+        const h = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+        const m = Math.floor((distance % (1000*60*60))/(1000*60));
+        const s = Math.floor((distance % (1000*60))/1000);
+        if(els.days) els.days.textContent = String(d).padStart(2,'0');
+        if(els.hours) els.hours.textContent = String(h).padStart(2,'0');
+        if(els.minutes) els.minutes.textContent = String(m).padStart(2,'0');
+        if(els.seconds) els.seconds.textContent = String(s).padStart(2,'0');
+      }
+      tick();
+      return setInterval(tick, 1000);
+    }
+
+    // Set your real event date/time here (local time)
+    const weddingDate = new Date('2024-02-02T18:30:00');
+    startCountdown(weddingDate.getTime(), {days:'heroDays', hours:'heroHours', minutes:'heroMinutes', seconds:'heroSeconds'});
+    startCountdown(weddingDate.getTime(), {days:'recDays', hours:'recHours', minutes:'recMinutes', seconds:'recSeconds'});
+*/
+    // Background music controls (start muted for autoplay policy)
+    const music = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-btn');
+    const musicIcon = document.getElementById('music-icon');
+
+    // Try to play on load (muted) to engage autoplay
+    document.addEventListener('DOMContentLoaded', () => {
+      const playPromise = music.play?.();
+      if (playPromise) {
+        playPromise.catch(() => {/* ignored: waits for user interaction */});
+      }
+    });
+
+    // Toggle mute/play on click
+    musicBtn.addEventListener('click', () => {
+      if (music.muted) {
+        music.muted = false;
+        // Ensure playing
+        if (music.paused) music.play();
+        musicIcon.textContent = '🔊';
+        musicBtn.querySelector('span + span')?.classList.remove('hidden');
+      } else {
+        // Prefer muting (keeps playback position) instead of pausing
+        music.muted = true;
+        musicIcon.textContent = '🔇';
+      }
+    });
+
+    // Optional: unmute on first user interaction anywhere
+    const unmuteOnce = () => {
+      if (music.muted) {
+        music.muted = false;
+        music.play().catch(()=>{});
+        musicIcon.textContent = '🔊';
+      }
+      window.removeEventListener('click', unmuteOnce);
+      window.removeEventListener('touchstart', unmuteOnce);
+    };
+    window.addEventListener('click', unmuteOnce, { once:true });
+    window.addEventListener('touchstart', unmuteOnce, { once:true });
+
+    // Simple slideshow logic
+  const slides = document.querySelectorAll("#hero-slideshow img");
+  let current = 0;
+
+  setInterval(() => {
+    slides[current].classList.remove("opacity-100");
+    slides[current].classList.add("opacity-0");
+
+    current = (current + 1) % slides.length;
+
+    slides[current].classList.remove("opacity-0");
+    slides[current].classList.add("opacity-100");
+  }, 4000); // change every 4 seconds
+
+  </script>
+</body>
+</html>
